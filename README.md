@@ -1,53 +1,46 @@
-# Benchmarking Manipulation (with new version of Isaac Sim)
-Benchmarking Manipulation Tasks with Isaac Sim 2022.2
+# Towards Understanding and Developing Trustworthy AI-CPS: Benchmarking and Testing AI-CPS in Robotics Manipulation with NVIDIA Omniverse Isaac Sim
+This folder contains all revelant code for the paper "Towards Understanding and Developing Trustworthy AI-CPS: Benchmarking and Testing AI-CPS in Robotics Manipulation with NVIDIA Omniverse Isaac Sim".
 
-Requirements:
-1. Install ISAAC SIM: https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/install_basic.html
-2. Install ISAAC SIM GYM Envs: https://github.com/NVIDIA-Omniverse/OmniIsaacGymEnvs
-3. Install SKRL in the ISAAC SIM PYTHON environment: go to default isaac folder, and run
-```
-./python.sh -m pip install skrl
-```
+## Benchmark of Robotics Manipulation 
 
-First run (with default installation location of ISAAC SIM)
-```
-alias PYTHON_PATH=~/.local/share/ov/pkg/isaac_sim-*/python.sh
-alias PYTHON_PATH=~/.local/share/ov/pkg/isaac_sim-2022.2.0/python.sh
-```
+### Requirements:
+1. Install Omniverse Isaac Sim: https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/install_basic.html
+2. Add Isaac Sim to PYTHON_PATH (with default installation location of ISAAC SIM)
+   ```
+   alias PYTHON_PATH=~/.local/share/ov/pkg/isaac_sim-*/python.sh
+   ```
+    
+2. Install Omniverse Isaac GYM Envs: https://github.com/NVIDIA-Omniverse/OmniIsaacGymEnvs
+3. Install SKRL, RTAMT, and Scipy in the Isaac Sim Python environment (the latter two are used for falsification): go to the Isaac folder, and run
+   ```
+   ./python.sh -m pip install skrl
+   ./python.sh -m pip install rtamt
+   ./python.sh -m pip install scipy
+   ```
+   
+### Run the learning process:
 
-
-Or add the above line to `~/.bashrc`
-
-Install `omniisaacgymenvs` as a python module for `PYTHON_PATH`:
-
-```bash
-PYTHON_PATH -m pip install -e .
-```
-
-To run skrl with envs
+To run SKRL with provided task environments (example):
 ```
 cd Gym_Envs/
-PYTHON_PATH skrl_train.py task=FrankaBallPushing num_envs=16 headless=False
+PYTHON_PATH skrl_train_PPO.py task=FrankaBallBalancing num_envs=16 headless=False
 ```
 
-To run envs (FrankaBallPushing, FrankaBallBalancing, FrankaDoorOpen, FrankaPegInHole, FrankaClothFolding)
-```
-cd Gym_Envs/
-PYTHON_PATH rl_train_multi.py task=FrankaBallPushing
-```
-
-Tensorboard: Tensorboard can be launched during training via the following command:
+To launch Tensorboard: 
 ```
 PYTHON_PATH -m tensorboard.main --logdir runs/FrankaBallBalancing/summaries/
 ```
 
+## Falsification Tool
+To run the falsification test for pre-trained agent, run:
+```
+cd Falsification_Tool/
+PYTHON_PATH manipulator_testing.py headless=False
+```
 
-To load a pre-trained checkpoint and run inferencing, run:
+## Performance Evaluation
+The performance evaluation uses the same framework as the falsification tool, but with the optimizer set to "random":
 ```
-PYTHON_PATH rl_train_multi.py task=FrankaBallBalancing test=True checkpoint=runs/FrankaBallBalancing/nn/FrankaBallBalancing.pth num_envs=4
-```
-
-To test a pre-trained agent, run:
-```
-PYTHON_PATH manipulator_testing.py headless=True
+cd Eval/
+PYTHON_PATH manipulator_eval.py headless=False
 ```
