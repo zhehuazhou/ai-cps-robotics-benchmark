@@ -41,6 +41,6 @@ PYTHON_PATH manipulator_testing.py headless=False
 ## Performance Evaluation
 The performance evaluation uses the same framework as the falsification tool, but with the optimizer set to "random":
 ```
-cd Eval/
+cd Evaluation/
 PYTHON_PATH manipulator_eval.py headless=False
 ```
