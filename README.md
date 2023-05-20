@@ -1,5 +1,5 @@
-# Towards Understanding and Developing Trustworthy AI-CPS: Benchmarking and Testing AI-CPS in Robotics Manipulation with NVIDIA Omniverse Isaac Sim
-This folder contains all revelant code for the paper "Towards Understanding and Developing Trustworthy AI-CPS: Benchmarking and Testing AI-CPS in Robotics Manipulation with NVIDIA Omniverse Isaac Sim".
+# Towards Building AI-CPS with NVIDIA Isaac Sim: An Industrial Benchmark and Case Study for Robotics Manipulation
+This folder contains all revelant code for the paper "Towards Building AI-CPS with NVIDIA Isaac Sim: An Industrial Benchmark and Case Study for Robotics Manipulation".
 
 ## Benchmark of Robotics Manipulation 
 
