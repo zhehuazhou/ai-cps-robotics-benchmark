@@ -13,9 +13,7 @@ This folder contains all revelant code for the paper "Towards Building AI-CPS wi
 2. Install Omniverse Isaac GYM Envs: https://github.com/NVIDIA-Omniverse/OmniIsaacGymEnvs
 3. Install SKRL, RTAMT, and Scipy in the Isaac Sim Python environment (the latter two are used for falsification): go to the Isaac folder, and run
    ```
-   ./python.sh -m pip install skrl
-   ./python.sh -m pip install rtamt
-   ./python.sh -m pip install scipy
+   ./python.sh -m pip install skrl rtamt scipy
    ```
    
 ### Run the learning process:
